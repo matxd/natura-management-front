@@ -1,14 +1,10 @@
+// Interface Authentication
 export interface ILogin {
   email: string,
   password: string
 }
 
-export interface IParamsGetProducts {
-  size: number,
-  page: number,
-  filter: string
-}
-
+// Interface Products
 export interface IProducts {
   totalItems: number,
   totalPages: number,
@@ -27,8 +23,30 @@ export interface IItemsAPI {
   status: boolean
 }
 
-export interface IInitialState {
-  data: null | IProducts[] | string,
-  isError: null | string,
-  isLoading: boolean
+export interface IAddProduct {
+  name: string,
+  genre: string,
+  amountStorage: number,
+  price: string,
+  image: string,
+  status: boolean
+}
+
+export interface IPutProduct {
+  id: string,
+  body: IEditProductForm
+}
+
+export interface IEditProductForm {
+  name: string,
+  genre: string,
+  amountStorage: number,
+  price: string,
+  image: string
+}
+
+export interface IParamsGetProducts {
+  size: number,
+  page: number,
+  filter?: string
 }
