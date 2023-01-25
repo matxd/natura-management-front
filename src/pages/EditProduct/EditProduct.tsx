@@ -1,6 +1,6 @@
 import style from './EditProduct.module.css';
 
-import productAPI from "../../redux/reducers/productSlice";
+import productAPI from "../../redux/reducers/productApi";
 
 import { useForm } from 'react-hook-form';
 

@@ -2,23 +2,26 @@ import style from './Login.module.css';
 
 import { useForm } from "react-hook-form";
 
-import authAPI from '../../redux/reducers/authSlice';
+import authAPI from '../../redux/reducers/authApi';
 
 import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utils/toast';
 import { ILogin } from '../../utils/interface';
+import { sendError } from '../../utils/functions';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [usePostAuth, { data, isLoading, isError }] = authAPI.usePostAuthorizationMutation();
+  const [usePostAuth, { data, isLoading, isError, error  }] = authAPI.usePostAuthorizationMutation();
 
   const { register, handleSubmit } = useForm<ILogin>();
 
   const HandleLogin = (dataLogin: ILogin) => {
     usePostAuth(dataLogin)
   };
+
+  if(isError) sendError(error);
 
   if (data && !isLoading && !isError) {
     localStorage.setItem('token', data);

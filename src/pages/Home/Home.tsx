@@ -1,25 +1,27 @@
 import style from './Home.module.css';
-
-import productAPI from "../../redux/reducers/productSlice";
+import {useState} from "react";
+import productAPI from "../../redux/reducers/productApi";
 
 import { IItemsAPI } from "../../utils/interface";
 
 import { useNavigate } from 'react-router-dom';
 
 import * as Components from '../../components/index';
-import { toast } from 'react-toastify';
-import { toastConfig } from '../../utils/toast';
+import { sendError } from '../../utils/functions';
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [filter, setFilter] = useState<any>({size: 10, page: 0});
+  const [name, setName] = useState<string>("");
+  const { data, isLoading, isError, error  } = productAPI.useGetProductsQuery(filter);
 
-  const { data, isLoading, isError } = productAPI.useGetProductsQuery({ size: 10, page: 0 });
-
-  if(isError) toast.success('Acesso inválido ou expirado!', toastConfig);
+  if(isError) sendError(error);
 
   return (
     <>
       <h1>Home</h1>
+      <input placeholder='buscar' onChange={e => setName(e.target.value)}/>
+      <button onClick={() => {setFilter({...filter, filter: name})}}>buscar</button>
       <button onClick={() => navigate('/cadastrar-produto')}>Cadastrar produto</button>
       {isLoading && (<h2>Carregando...</h2>)} 
       <div className={style.container}>

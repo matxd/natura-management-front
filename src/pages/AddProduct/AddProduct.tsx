@@ -1,16 +1,17 @@
 import style from './AddProduct.module.css';
 
-import productAPI from "../../redux/reducers/productSlice";
+import productAPI from "../../redux/reducers/productApi";
 
 import { useForm } from 'react-hook-form';
 
 import { IAddProduct } from '../../utils/interface';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utils/toast';
+import { useNavigate } from 'react-router-dom';
 
 export const AddProduct = () => {
-  const [usePostProduct, { data, isLoading }] = productAPI.usePostProductMutation();
-
+  const navigate = useNavigate()
+  const [usePostProduct, { data, isLoading, isSuccess }] = productAPI.usePostProductMutation();
   const { register, handleSubmit } = useForm<IAddProduct>();
 
   const HandleAdd = (data: IAddProduct) => {
@@ -19,6 +20,7 @@ export const AddProduct = () => {
   };
 
   if(data) toast.success(data.message, toastConfig);
+  if(isSuccess) navigate(-1);
 
   return (
     <>

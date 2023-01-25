@@ -1,4 +1,4 @@
-import productAPI from '../../redux/reducers/productSlice';
+import productAPI from '../../redux/reducers/productApi';
 
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utils/toast';
