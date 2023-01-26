@@ -1,36 +1,53 @@
-import style from "./Login.module.css";
-import { Box } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  TextField,
+  Divider,
+  Button,
+  IconButton,
+  CircularProgress,
+} from "@mui/material";
+import {
+  AccountCircle,
+  AccountCircleTwoTone,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-
-import backgroundLogin from "../../assets/background-login.png";
-import backgroundHome from "../../assets/background-home.png";
-import backgroundApp from "../../assets/background-home-app.png";
 
 import authAPI from "../../redux/reducers/authApi";
 
 import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
-import { toastConfig } from "../../utils/toast";
-import { ILogin } from "../../utils/interface";
 import { sendError } from "../../utils/functions";
+import Typography from "@mui/material/Typography";
 
-export const Login = () => {
+import backgroundLogin from "../../assets/background-login.png";
+import InputAdornment from "@mui/material/InputAdornment";
+
+interface ILogin {
+  email: string;
+  password: string;
+}
+
+export const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [usePostAuth, { data, isLoading, isError, error }] =
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [usePostAuth, { data, isLoading, isError, error, isSuccess }] =
     authAPI.usePostAuthorizationMutation();
-
   const { register, handleSubmit } = useForm<ILogin>();
 
-  const HandleLogin = (dataLogin: ILogin) => {
-    usePostAuth(dataLogin);
+  const toggleShowPassword = () => setShowPassword(!showPassword);
+
+  const HandleLogin = (data: ILogin) => {
+    usePostAuth(data);
   };
 
   if (isError) sendError(error);
 
-  if (data && !isLoading && !isError) {
+  if (isSuccess && data) {
     localStorage.setItem("token", data);
-    toast.success("Autenticado com sucesso", toastConfig);
+    navigate("/inicial");
   }
 
   return (
@@ -40,12 +57,117 @@ export const Login = () => {
           width: "50%",
           height: "100%",
           backgroundImage: `url(${backgroundLogin})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
-      ></Box>
-      <Box sx={{ width: "50%", height: "100%", bgcolor: "#f8f8ff" }}>
+      />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "50%",
+          padding: "10%",
+          height: "100%",
+          bgcolor: "#f8f8ff",
+        }}
+      >
         <Box
-          sx={{ display: "flex", flexDirection: "column", bgcolor: "#fff" }}
-        ></Box>
+          component="form"
+          onSubmit={handleSubmit(HandleLogin)}
+          sx={{
+            padding: "12% 10%",
+            display: "flex",
+            flexDirection: "column",
+            bgcolor: "#fff",
+            gap: "1rem",
+            alignItems: "center",
+            position: "relative",
+            borderRadius: "10px",
+            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          }}
+        >
+          <AccountCircleTwoTone
+            sx={{
+              color: "#003a16",
+              fontSize: "80px",
+              position: "absolute",
+              top: "-40px",
+            }}
+          />
+          <Typography color="#01752d" fontSize="25px" fontWeight="bold">
+            Login
+          </Typography>
+          <Divider sx={{ color: "#222", width: "100%", fontSize: "14px" }}>
+            Preencha os campos
+          </Divider>
+          <Box sx={{ width: "100%" }}>
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Digite seu e-mail..."
+              label="E-mail"
+              {...register("email")}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      sx={{
+                        "&:hover": {
+                          background: "transparent",
+                          cursor: "initial",
+                        },
+                      }}
+                    >
+                      <AccountCircle />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+          <Box sx={{ width: "100%" }}>
+            <TextField
+              fullWidth
+              label="Senha"
+              placeholder="Digite sua senha..."
+              variant="outlined"
+              type={showPassword ? "text" : "password"}
+              {...register("password")}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={toggleShowPassword}>
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+          <Divider sx={{ color: "black", width: "100%" }} />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isLoading ? true : false}
+            sx={{
+              width: "150px",
+              height: "40px",
+              background: "#005520",
+              borderRadius: "100px",
+              fontWeight: "bold",
+              "&:hover": {
+                background: "#01752d",
+              },
+            }}
+          >
+            {isLoading ? (
+              <CircularProgress sx={{ color: "#005520" }} size="1rem" />
+            ) : (
+              "Entrar"
+            )}
+          </Button>
+        </Box>
       </Box>
       {/* <h1>Login</h1>
       <form className={style.form} onSubmit={handleSubmit(HandleLogin)}>
