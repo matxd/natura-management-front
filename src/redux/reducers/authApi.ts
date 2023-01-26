@@ -4,7 +4,7 @@ import { ILogin } from "../../utils/interface";
 
 const authAPI = createApi({
   reducerPath: "authAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
   endpoints: (builder) => ({
     postAuthorization: builder.mutation<string, ILogin>({
       query: (dataLogin: ILogin) => ({

@@ -5,6 +5,8 @@ import * as Page from './pages/index';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import 'react-tooltip/dist/react-tooltip.css';
+
 function AppRoutes() {
   return (
     <>

@@ -12,7 +12,7 @@ export const AccountSettings = () => {
   return (
     <>
       <Stack spacing={4} direction='row' alignItems='center'>
-        <Typography variant="body1" sx={{ fontWeight: '700' }}>Olá Matheus</Typography>
+        <Typography variant="body1" sx={{ fontWeight: '700' }}>Olá, Matheus</Typography>
         <Tooltip title="Configurações da conta">
           <IconButton onClick={handleClick} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ width: '40px', height: '40px' }}>
             <Avatar sx={{ bgcolor: 'gray' }} alt="User Avatar" src="">M</Avatar>

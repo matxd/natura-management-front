@@ -50,3 +50,12 @@ export interface IParamsGetProducts {
   page: number,
   filter?: string
 }
+
+export interface ICards {
+  id: string,
+  name: string,
+  genre: string,
+  amountStorage: number,
+  price: string,
+  image: string
+}
