@@ -51,9 +51,10 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <Box sx={{ display: "flex", maxWidth: "100vw", height: "100vh" }}>
+    <Box sx={{ display: "flex", maxWidth: "100%", height: "100vh" }}>
       <Box
         sx={{
+          display: { xs: "none", md: "flex" },
           width: "50%",
           height: "100%",
           backgroundImage: `url(${backgroundLogin})`,
@@ -66,10 +67,13 @@ export const Login: React.FC = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
           padding: "10%",
           height: "100%",
           bgcolor: "#f8f8ff",
+          backgroundImage: { xs: `url(${backgroundLogin})`, md: "none" },
+          backgroundPosition: "center",
+          backgroundSize: "cover",
         }}
       >
         <Box
@@ -89,6 +93,7 @@ export const Login: React.FC = () => {
         >
           <AccountCircleTwoTone
             sx={{
+              display: { xs: "none", md: "flex" },
               color: "#003a16",
               fontSize: "80px",
               position: "absolute",
