@@ -40,6 +40,7 @@ export const Login = () => {
           width: "50%",
           height: "100%",
           backgroundImage: `url(${backgroundLogin})`,
+          backgroundSize: 'cover'
         }}
       ></Box>
       <Box sx={{ width: "50%", height: "100%", bgcolor: "#f8f8ff" }}>

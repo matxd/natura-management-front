@@ -7,19 +7,39 @@ import { IItemsAPI } from "../../utils/interface";
 import { useNavigate } from 'react-router-dom';
 
 import * as Components from '../../components/index';
+import backgroundHome from "../../assets/background-home.png";
+
 import { sendError } from '../../utils/functions';
+import { Box } from '@mui/material';
+import { Container } from '@mui/system';
 
 export const Home = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<any>({size: 10, page: 0});
   const [name, setName] = useState<string>("");
-  const { data, isLoading, isError, error  } = productAPI.useGetProductsQuery(filter);
+  // const { data, isLoading, isError, error  } = productAPI.useGetProductsQuery(filter);
 
-  if(isError) sendError(error);
+  // if(isError) sendError(error);
 
   return (
     <>
-      <h1>Home</h1>
+      <Box sx={{ maxWidth: "100%", height: "100vh", backgroundImage: `url(${backgroundHome})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <Container maxWidth="lg" sx={{ paddingTop: 2 }}>
+          <Components.Header />
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', paddingTop: 5, justifyContent: 'space-between', gap: '45px' }}>
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+            <Components.CardProduct />
+          </Box>
+        </Container>
+      </Box>
+
+      {/* <h1>Home</h1>
       <input placeholder='buscar' onChange={e => setName(e.target.value)}/>
       <button onClick={() => {setFilter({...filter, filter: name})}}>buscar</button>
       <button onClick={() => navigate('/cadastrar-produto')}>Cadastrar produto</button>
@@ -42,7 +62,7 @@ export const Home = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   )
 }
