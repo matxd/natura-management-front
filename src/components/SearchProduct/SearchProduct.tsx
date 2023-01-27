@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Search, HighlightOff } from '@mui/icons-material';
+
 import { useDispatch } from "react-redux";
 import { changeFilter } from "../../redux/reducers/productSlice";
+
 export const SearchProduct: React.FC = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");

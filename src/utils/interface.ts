@@ -28,8 +28,7 @@ export interface IAddProduct {
   genre: string,
   amountStorage: number,
   price: string,
-  image: string | unknown,
-  status: boolean
+  image: string | unknown
 }
 
 export interface IPutProduct {
@@ -41,7 +40,8 @@ export interface IEditProductForm {
   name: string,
   genre: string,
   amountStorage: number,
-  price: string
+  price: string,
+  image: string | unknown
 }
 
 export interface IParamsGetProducts {
