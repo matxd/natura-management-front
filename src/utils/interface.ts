@@ -28,7 +28,7 @@ export interface IAddProduct {
   genre: string,
   amountStorage: number,
   price: string,
-  image: string,
+  image: string | unknown,
   status: boolean
 }
 
@@ -41,8 +41,7 @@ export interface IEditProductForm {
   name: string,
   genre: string,
   amountStorage: number,
-  price: string,
-  image: string
+  price: string
 }
 
 export interface IParamsGetProducts {
@@ -52,10 +51,10 @@ export interface IParamsGetProducts {
 }
 
 export interface ICards {
-  id: string,
-  name: string,
-  genre: string,
-  amountStorage: number,
-  price: string,
-  image: string
+  _id?: string,
+  name?: string,
+  genre?: string,
+  amountStorage?: number,
+  price?: string,
+  image?: string | unknown
 }
