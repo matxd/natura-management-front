@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import productAPI from "../../redux/reducers/productApi";
 
 import { IItemsAPI } from "../../utils/interface";
@@ -10,13 +10,16 @@ import * as Components from '../../components/index';
 import { sendError } from '../../utils/functions';
 import { Box } from '@mui/material';
 import { Container } from '@mui/system';
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-export const Home = () => {
+export const Home: React.FC = () => {
+  const filterProduct = useSelector((state: RootState) => state.product.filterProduct)
   const navigate = useNavigate();
   const [filter, setFilter] = useState<any>({size: 10, page: 0});
   const [name, setName] = useState<string>("");
 
-  const { data, isLoading, isError, error } = productAPI.useGetProductsQuery(filter);
+  const { data, isLoading, isError, error } = productAPI.useGetProductsQuery(filterProduct);
 
   if(isError) sendError(error);
 
