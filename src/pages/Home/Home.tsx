@@ -1,5 +1,4 @@
-import style from './Home.module.css';
-import {useState} from "react";
+import { useState } from "react";
 import productAPI from "../../redux/reducers/productApi";
 
 import { IItemsAPI } from "../../utils/interface";
@@ -7,7 +6,6 @@ import { IItemsAPI } from "../../utils/interface";
 import { useNavigate } from 'react-router-dom';
 
 import * as Components from '../../components/index';
-import backgroundHome from "../../assets/background-home.png";
 
 import { sendError } from '../../utils/functions';
 import { Box } from '@mui/material';
@@ -24,7 +22,7 @@ export const Home = () => {
 
   return (
     <>
-      <Box sx={{ maxWidth: "100%", height: "100vh", backgroundImage: `url(${backgroundHome})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <Box sx={{ maxWidth: "100%", height: "100vh" }}>
         <Container maxWidth="lg" sx={{ paddingTop: 2 }}>
           <Components.Header />
           {isLoading && (<h2>Carregando...</h2>)}

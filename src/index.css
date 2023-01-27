@@ -8,7 +8,10 @@ body {
   font-family: "Raleway", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #121212;
+  background-image: url('./assets/background-home.png');
+  background-size: cover;
+  background-position: center;
+   background-attachment: fixed;
   color: #fff;
   text-align: center;
 }
