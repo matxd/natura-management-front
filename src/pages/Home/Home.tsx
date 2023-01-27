@@ -28,7 +28,7 @@ export const Home = () => {
           {isLoading && (<h2>Carregando...</h2>)}
           <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', paddingTop: 5, justifyContent: 'space-between', gap: '45px' }}>
             {data && data.items.map((item: IItemsAPI) => (
-              <Components.CardProduct key={item._id} id={item._id} name={item.name} genre={item.genre} amountStorage={item.amountStorage} price={item.price} image={item.image} />
+              <Components.CardProduct key={item._id} {...item} />
             ))}
           </Box>
         </Container>
