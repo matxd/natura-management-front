@@ -13,17 +13,16 @@ import * as Components from '../../components/index';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utils/toast';
 import { IEditProductForm } from '../../utils/interface';
-import { FileToBase64 } from "../../utils/functions";
 
 export const EditProduct = () => {
-  const [image, setImage] = useState<any>(null);
+  const [image, setImage] = useState();
   const inputImageRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [usePutProduct, { data, isLoading, isSuccess }] = productAPI.usePutProductMutation();
 
-  const { register, handleSubmit, watch, setValue, clearErrors } = useForm<IEditProductForm>({
+  const { register, handleSubmit, watch, setValue } = useForm<IEditProductForm>({
     defaultValues: {
       name: state.name,
       amountStorage: state.amountStorage,
@@ -35,24 +34,26 @@ export const EditProduct = () => {
 
   const watchInputs = watch();
 
-  const HandleEdit = (data: IEditProductForm) => {
-    const newData = { ...data, amountStorage: Number(data.amountStorage) };
-    usePutProduct({ body: newData, id: state._id });
-  }
-
-  const handleFileChange = async (event: any) => {
-    if (event.target.files && event.target.files.length > 0) {
-      await FileToBase64(event.target.files[0]).then((response) => {
-        setImage(response);
-        setValue("image", response);
-        clearErrors("image");
-      });
-    }
-  };
-
   const handleClickFile = () => {
     inputImageRef.current?.click();
   };
+
+  const imageChange = (e: any): void => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImage(e.target.files[0]);
+      setValue('image', e.target.files[0])
+    }
+  };
+
+  const dataAPI = new FormData();
+  if(image) {
+    dataAPI.append("image", image)
+  }
+
+  const HandleEdit = (data: IEditProductForm) => {
+    dataAPI.append("data", JSON.stringify({ name: data.name, price: data.price, amountStorage: Number(data.amountStorage), genre: data.genre }));
+    usePutProduct({ body: dataAPI, id: state._id });
+  }
 
   if(data) toast.success(data.message, toastConfig);
   if(isSuccess) navigate(-1);
@@ -74,7 +75,7 @@ export const EditProduct = () => {
               <Box sx={{ backgroundColor: '#fff', padding: 5, width: '50%', display: 'flex', flexDirection: 'column', gap: 3, borderRadius: '5px' }}>
                 <FormControl fullWidth>
                   <Button onClick={handleClickFile} variant='contained' sx={{ height: '56px' }}>
-                    <input type="file" accept='image/jpeg, image/png' style={{ display: 'none' }} ref={inputImageRef} onChange={handleFileChange} />
+                    <input type="file" accept='image/jpeg, image/png' style={{ display: 'none' }} ref={inputImageRef} onChange={imageChange} />
                     Enviar imagem
                   </Button>
                 </FormControl>

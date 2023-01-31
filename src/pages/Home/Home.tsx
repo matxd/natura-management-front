@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
 import productAPI from "../../redux/reducers/productApi";
 
 import { IItemsAPI } from "../../utils/interface";
-
-import { useNavigate } from 'react-router-dom';
 
 import * as Components from '../../components/index';
 
@@ -15,9 +12,6 @@ import { RootState } from "../../redux/store";
 
 export const Home: React.FC = () => {
   const filterProduct = useSelector((state: RootState) => state.product.filterProduct)
-  const navigate = useNavigate();
-  const [filter, setFilter] = useState<any>({size: 10, page: 0});
-  const [name, setName] = useState<string>("");
 
   const { data, isLoading, isError, error } = productAPI.useGetProductsQuery(filterProduct);
 
@@ -26,23 +20,16 @@ export const Home: React.FC = () => {
   return (
     <>
       <Box sx={{ maxWidth: "100%", height: "100vh" }}>
-        <Container maxWidth="lg" sx={{ paddingTop: 2 }}>
+        <Container sx={{ paddingTop: 2, maxWidth: { xs: '100%', md: '1200px' } }}>
           <Components.Header />
           {isLoading && (<h2>Carregando...</h2>)}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', paddingTop: 5, justifyContent: 'space-between', gap: '45px' }}>
+          <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap', width: '100%', paddingTop: 5, gap: '50px' }}>
             {data && data.items.map((item: IItemsAPI) => (
               <Components.CardProduct key={item._id} {...item} />
             ))}
           </Box>
         </Container>
       </Box>
-
-      {/* Lógica pesquisar produto */}
-      {/* <h1>Home</h1>
-      <input placeholder='buscar' onChange={e => setName(e.target.value)}/>
-      <button onClick={() => {setFilter({...filter, filter: name})}}>buscar</button>
-      <button onClick={() => navigate('/cadastrar-produto')}>Cadastrar produto</button>
-      */}
     </>
   )
 }

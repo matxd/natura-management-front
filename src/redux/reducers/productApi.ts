@@ -19,7 +19,7 @@ const productAPI = createApi({
         `/produtos/listar?size=${params.size}&page=${params.page}${params.filter ? `&name=${params.filter}` : ''}`,
         providesTags: ['products']
     }),
-    postProduct: builder.mutation<{ message: string }, IAddProduct>({
+    postProduct: builder.mutation<{ message: string }, FormData | IAddProduct>({
       query: (product: IAddProduct) => ({
         url: `/produtos/cadastrar`,
         method: 'POST',
@@ -27,7 +27,7 @@ const productAPI = createApi({
       }),
       invalidatesTags: ['products']
     }),
-    putProduct: builder.mutation<{ message: string }, IPutProduct>({
+    putProduct: builder.mutation<{ message: string }, any>({
       query: (productParams: IPutProduct) => ({
         url: `/produtos/editar/${productParams.id}`,
         method: 'PUT',

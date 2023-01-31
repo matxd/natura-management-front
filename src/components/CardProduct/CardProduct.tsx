@@ -32,7 +32,7 @@ export const CardProduct: FC<ICards> = (item) => {
       <Box sx={{ border: '3px solid white', borderRadius: '5px', backgroundColor: '#fff', color: '#000', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '250px', gap: 1, position: 'relative' }}>
         <Stack sx={{ width: '100%' }}>
           {item.image 
-            ? ( <img src={typeof item.image === 'string' ? item.image : ''} alt="Card Img Product" height='200px' /> ) 
+            ? ( <img src={typeof item.image === 'object' ? URL.createObjectURL(item.image) : item.image ? `${item.image}` : ''} alt="Card Img Product" height='200px' /> ) 
             : ( <Box sx={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <InsertPhoto sx={{ fontSize: '100px', color: '#808080' }} />
                 </Box> 
