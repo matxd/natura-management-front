@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getNameLoggedUser } from '../../redux/reducers/authSlice';
 import { RootState } from '../../redux/store';
@@ -8,6 +10,8 @@ import { Typography, Tooltip, IconButton, Avatar, Menu, MenuItem, ListItemIcon, 
 import { Edit, Logout } from '@mui/icons-material';
 
 export const AccountSettings = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const { name } = useSelector((state: RootState) => state.auth);
 
@@ -28,6 +32,11 @@ export const AccountSettings = () => {
     } catch (error) {
       dispatch(getNameLoggedUser(''));
     }
+  }
+
+  const userLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
   }
 
   useEffect(() => {
@@ -53,7 +62,7 @@ export const AccountSettings = () => {
           Editar perfil
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => { handleClose(); userLogout(); }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

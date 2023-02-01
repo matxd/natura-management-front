@@ -1,40 +1,23 @@
-import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  Divider,
-  Button,
-  IconButton,
-  CircularProgress,
-} from "@mui/material";
-import {
-  AccountCircle,
-  AccountCircleTwoTone,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material";
+import { useState } from "react";
+
+import { Box, TextField, Divider, Button, IconButton, CircularProgress, InputAdornment, Typography } from "@mui/material";
+import { AccountCircle, AccountCircleTwoTone, Visibility, VisibilityOff } from "@mui/icons-material";
+
+import { useNavigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 
 import authAPI from "../../redux/reducers/authApi";
 
-import { useNavigate } from "react-router-dom";
-
 import { sendError } from "../../utils/functions";
-import Typography from "@mui/material/Typography";
+import { ILogin } from "../../utils/interface";
 
 import backgroundLogin from "../../assets/background-login.png";
-import InputAdornment from "@mui/material/InputAdornment";
-
-interface ILogin {
-  email: string;
-  password: string;
-}
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [usePostAuth, { data, isLoading, isError, error, isSuccess }] =
-    authAPI.usePostAuthorizationMutation();
+  const [usePostAuth, { data, isLoading, isError, error, isSuccess }] = authAPI.usePostAuthorizationMutation();
   const { register, handleSubmit } = useForm<ILogin>();
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
@@ -174,15 +157,6 @@ export const Login: React.FC = () => {
           </Button>
         </Box>
       </Box>
-      {/* <h1>Login</h1>
-      <form className={style.form} onSubmit={handleSubmit(HandleLogin)}>
-        <div className={style.div}>
-          <input type="text" {...register("email")} required placeholder='Email' />
-          <input type="text" {...register("password")} required placeholder='Senha' />
-        </div>
-        <button type="submit">Fazer login</button>
-      </form>
-      <button onClick={() => navigate('/inicial')}>Home</button> */}
     </Box>
   );
 };

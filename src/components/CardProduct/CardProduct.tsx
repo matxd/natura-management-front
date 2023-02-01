@@ -1,9 +1,7 @@
 import { FC } from 'react';
 
 import { Box, Divider, SpeedDial, SpeedDialAction, Stack, Typography } from '@mui/material';
-import { Edit, Delete, Settings } from '@mui/icons-material';
-
-import { InsertPhoto } from '@mui/icons-material';
+import { Edit, Delete, Settings, AddPhotoAlternate } from '@mui/icons-material';
 
 import { Tooltip } from 'react-tooltip';
 
@@ -32,9 +30,10 @@ export const CardProduct: FC<ICards> = (item) => {
       <Box sx={{ border: '3px solid white', borderRadius: '5px', backgroundColor: '#fff', color: '#000', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '250px', gap: 1, position: 'relative' }}>
         <Stack sx={{ width: '100%' }}>
           {item.image 
-            ? ( <img src={typeof item.image === 'object' ? URL.createObjectURL(item.image) : item.image ? `${item.image}` : ''} alt="Card Img Product" height='200px' /> ) 
-            : ( <Box sx={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <InsertPhoto sx={{ fontSize: '100px', color: '#808080' }} />
+            ? ( <img style={{ borderRadius: '10px' }} src={typeof item.image === 'object' ? URL.createObjectURL(item.image) : item.image ? `${item.image}` : ''} alt="Card Img Product" height='200px' /> ) 
+            : ( <Box sx={{ height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                  <AddPhotoAlternate sx={{ fontSize: '100px', color: '#808080' }} />
+                  <Typography>Produto sem imagem</Typography>
                 </Box> 
               )
           }
@@ -51,7 +50,7 @@ export const CardProduct: FC<ICards> = (item) => {
             <Typography variant='body1' sx={{ fontWeight: '700' }}>R$ {item.price}</Typography>
             <Typography variant='body1' sx={{ textTransform: 'uppercase' }}>{item.genre}</Typography>
             {item._id && (
-              <SpeedDial direction='down' sx={{ '& .MuiFab-primary': { width: 40, height: 40, backgroundColor: '#efebed', color: '#000' }, position: 'absolute', top: 5, right: 0 }} ariaLabel='qualquer-texto' icon={<Settings />}>
+              <SpeedDial direction='down' sx={{ '& .MuiFab-primary': { width: 40, height: 40, backgroundColor: '#efebed', color: '#000' }, position: 'absolute', top: 5, right: 0, '& .MuiSpeedDial-fab': { '&:hover': { bgcolor: '#efebed', opacity: '0.8' } } }} ariaLabel='qualquer-texto' icon={<Settings />}>
                 <SpeedDialAction sx={{ width: 35, height: 35 }} key='edit' icon={<Edit />} tooltipTitle='Editar' onClick={() => {
                   navigate('/editar-produto', { state: item })
                 }} />

@@ -13,7 +13,6 @@ export const SearchProduct: React.FC = () => {
 
   const changeName = (value: string) => {
     if(!value) {dispatch(changeFilter("")); setSought(false)}
-    
     setName(value);
   }
 
