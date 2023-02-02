@@ -8,7 +8,7 @@ import { IItemsAPI } from "../../utils/interface";
 
 import * as Components from '../../components/index';
 
-import { Box, Container, CircularProgress, Pagination } from '@mui/material';
+import { Box, Container, CircularProgress, Pagination, Typography } from '@mui/material';
 import { useState } from "react";
 
 export const Home: React.FC = () => {
@@ -19,12 +19,10 @@ export const Home: React.FC = () => {
 
   const { data, isLoading, isError, error } = productAPI.useGetProductsQuery(filterProduct);
 
-  console.log(data)
-
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(changePage(value - 1));
     setPage(value);
-  }
+  };
 
   if(isError) sendError(error);
 
@@ -33,7 +31,11 @@ export const Home: React.FC = () => {
       <Box sx={{ maxWidth: "100%", height: "100vh" }}>
         <Container sx={{ maxWidth: { xs: '100%', md: '1200px' }, height: { md: '830px' } }}>
           <Components.Header />
+
           {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', widht: '100%', height: '90vh' }}><CircularProgress color="inherit" /></Box>)}
+
+          {!data?.items.length && (<Box sx={{ display: 'flex', justifyContent: 'center', widht: '100%' }}><Typography variant='h4'>Nenhum produto encontrado, cadastre um produto.</Typography></Box>)}
+
           {!isLoading && (
             <>
               <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap', width: '100%', paddingTop: 2, gap: '50px' }}>
