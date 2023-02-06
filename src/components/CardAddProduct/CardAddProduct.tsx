@@ -11,7 +11,7 @@ export const CardAddProduct = () => {
   return (
     <>
       <Tooltip anchorId='icon' style={{ width: '225px', zIndex: 999 }} />
-      <Box sx={{ border: '3px solid #efebed', borderRadius: '5px', backgroundColor: '#efebed', color: '#000', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '250px', height: '363px', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ border: '3px solid #efebed', borderRadius: '5px', backgroundColor: '#efebed', color: '#000', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '250px', height: '343px', justifyContent: 'center', alignItems: 'center' }}>
         <PostAdd id='icon' data-tooltip-content='Cadastrar produto' sx={{ fontSize: '64px', cursor: 'pointer', '&:hover': { opacity: '0.7' } }} onClick={() => navigate('/cadastrar-produto')} />
       </Box>
     </>

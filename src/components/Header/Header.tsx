@@ -38,7 +38,7 @@ export const Header = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, paddingBottom: '20px', height: '10vh', paddingTop: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, paddingBottom: '10px', height: '10vh', paddingTop: 1 }}>
         <Stack spacing={{ xs: 0, md: 2 }} direction='row' alignItems='center'>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <img src={logo} alt="Logo Natura Management" width='150px' />

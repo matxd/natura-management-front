@@ -38,7 +38,7 @@ export const Home: React.FC = () => {
 
           {!isLoading && (
             <>
-              <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap', width: '100%', paddingTop: 2, gap: '50px' }}>
+              <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap', width: '100%', gap: '50px', paddingTop: { md: 1, xs: 2 } }}>
                 <Components.CardAddProduct />
                 {data && data.items.map((item: IItemsAPI) => (
                   <Components.CardProduct key={item._id} {...item} />
@@ -50,8 +50,8 @@ export const Home: React.FC = () => {
 
         {!isLoading && (
           <Container sx={{ maxWidth: { xs: '100%', md: '1200px' } }}>
-            <Box sx={{ paddingTop: 2, paddingBottom: 2, display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' }, alignItems: 'center' }}>
-              <Box sx={{ backgroundColor: '#fff', padding: '5px', borderRadius: '5px' }}>
+            <Box sx={{ paddingTop: 4, paddingBottom: 2, display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' }, alignItems: 'center' }}>
+              <Box sx={{ backgroundColor: '#fff', borderRadius: '5px' }}>
                 <Pagination count={data ? data.totalPages : 0} page={page} siblingCount={0} onChange={handleChangePage} size='large' shape="rounded" />
               </Box>
             </Box>

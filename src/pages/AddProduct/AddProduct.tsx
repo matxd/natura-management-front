@@ -70,7 +70,7 @@ export const AddProduct = () => {
                 <Components.CardProduct {...watchInputs} />
               </Box>
 
-              <Box sx={{ backgroundColor: '#fff', padding: 5, width: { xs: '100%', md: '50%' }, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: '5px' }}>
+              <Box sx={{ backgroundColor: '#fff', padding: 5, width: { xs: '100%', md: '50%' }, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: '5px', marginBottom: { xs: 5, md: 0 } }}>
                 <FormControl fullWidth>
                   <Button onClick={handleClickFile} variant='contained' sx={{ height: '56px' }}>
                     <input type="file" accept='image/jpeg, image/png' style={{ display: 'none' }} ref={inputImageRef} onChange={imageChange} />
