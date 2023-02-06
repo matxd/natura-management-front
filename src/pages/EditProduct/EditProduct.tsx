@@ -30,7 +30,8 @@ export const EditProduct = () => {
       amountStorage: state.amountStorage,
       price: state.price,
       genre: state.genre,
-      image: state.image
+      image: state.image,
+      expirationDate: state.expirationDate
     }
   });
 
@@ -93,6 +94,10 @@ export const EditProduct = () => {
 
                 <FormControl fullWidth>
                   <TextField label="Preço" required placeholder="Preço do produto" variant="outlined" {...register("price")} type='text' />
+                </FormControl>
+
+                <FormControl fullWidth>
+                  <TextField InputLabelProps={{ shrink: true }} label="Data de Validade" required placeholder="Data de validade do produto" variant="outlined" {...register("expirationDate")} type='date' />
                 </FormControl>
 
                 <FormControl fullWidth>

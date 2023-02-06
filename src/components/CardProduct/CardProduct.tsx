@@ -41,14 +41,17 @@ export const CardProduct: FC<ICards> = (item) => {
         <Divider />
         <Stack spacing={1} flexDirection='column' sx={{ width: '100%' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', paddingLeft: '5px', paddingRight: '5px' }}>
-            <Typography variant='body1' id={item._id} data-tooltip-content={item.name} sx={{ textAlign: 'start', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</Typography>
+            <Typography variant='body1' id={item._id} data-tooltip-content={item.name} sx={{ textAlign: 'start', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textTransform: 'capitalize' }}>{item.name}</Typography>
           </Box>
           <Box sx={{ backgroundColor: '#efebed', padding: '5px' }}>
             <Typography variant='body1'>Estoque: <strong>{item.amountStorage}</strong></Typography>
           </Box>
+          <Box sx={{ backgroundColor: '#efebed', display: 'flex', padding: '5px', justifyContent: 'center' }}>
+            <Typography variant='body1'>Validade: <strong>{item.expirationDate?.replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</strong></Typography>
+          </Box>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingLeft: '5px', paddingRight: '5px' }}>
             <Typography variant='body1' sx={{ fontWeight: '700' }}>R$ {item.price}</Typography>
-            <Typography variant='body1' sx={{ textTransform: 'uppercase' }}>{item.genre}</Typography>
+            <Typography variant='body1' sx={{ textTransform: 'uppercase', fontWeight: '700' }}>{item.genre}</Typography>
             {item._id && (
               <SpeedDial direction='down' sx={{ '& .MuiFab-primary': { width: 40, height: 40, backgroundColor: '#efebed', color: '#000' }, position: 'absolute', top: 5, right: 0, '& .MuiSpeedDial-fab': { '&:hover': { bgcolor: '#efebed', opacity: '0.8' } } }} ariaLabel='qualquer-texto' icon={<Settings />}>
                 <SpeedDialAction sx={{ width: 35, height: 35 }} key='edit' icon={<Edit />} tooltipTitle='Editar' onClick={() => {

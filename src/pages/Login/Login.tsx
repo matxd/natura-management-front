@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Box, TextField, Divider, Button, IconButton, CircularProgress, InputAdornment, Typography } from "@mui/material";
 import { AccountCircle, AccountCircleTwoTone, Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 
@@ -32,6 +32,9 @@ export const Login: React.FC = () => {
     localStorage.setItem("token", data);
     navigate("/inicial");
   }
+
+  const token = localStorage.getItem('token');
+  if (token) return <Navigate to='/inicial' />;
 
   return (
     <Box sx={{ display: "flex", maxWidth: "100%", height: "100vh" }}>

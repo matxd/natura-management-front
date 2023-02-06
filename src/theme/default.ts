@@ -2,6 +2,6 @@ import { createTheme } from "@mui/material";
 
 export const defaultTheme = createTheme({
   typography: {
-    fontFamily: ["Raleway", "sans-serif"].join(","),
+    fontFamily: ["Roboto", "sans-serif"].join(","),
   },
 });

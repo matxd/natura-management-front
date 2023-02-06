@@ -48,7 +48,7 @@ export const AddProduct = () => {
   }
 
   const HandleAdd = (data: IAddProduct) => {
-    dataAPI.append("data", JSON.stringify({ name: data.name, price: data.price, amountStorage: Number(data.amountStorage), genre: data.genre }));
+    dataAPI.append("data", JSON.stringify({ name: data.name, price: data.price, amountStorage: Number(data.amountStorage), genre: data.genre, expirationDate: data.expirationDate }));
     usePostProduct(dataAPI);
   };
 
@@ -88,6 +88,10 @@ export const AddProduct = () => {
 
                 <FormControl fullWidth>
                   <TextField label="Preço" required placeholder="Preço do produto" variant="outlined" {...register("price")} type='text' />
+                </FormControl>
+
+                <FormControl fullWidth>
+                  <TextField InputLabelProps={{ shrink: true }} label="Data de Validade" required placeholder="Data de validade do produto" variant="outlined" {...register("expirationDate")} type='date' />
                 </FormControl>
 
                 <FormControl fullWidth>

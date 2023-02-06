@@ -28,7 +28,8 @@ export interface IAddProduct {
   genre: string,
   amountStorage: number,
   price: string,
-  image: FormData
+  image: FormData,
+  expirationDate: string
 }
 
 export interface IPutProduct {
@@ -41,7 +42,8 @@ export interface IEditProductForm {
   genre: string,
   amountStorage: number,
   price: string,
-  image: FormData
+  image: FormData,
+  expirationDate: string
 }
 
 export interface IParamsGetProducts {
@@ -55,6 +57,7 @@ export interface ICards {
   name?: string,
   genre?: string,
   amountStorage?: number,
-  price?: string
-  image?: any
+  price?: string,
+  image?: any,
+  expirationDate?: string
 }
