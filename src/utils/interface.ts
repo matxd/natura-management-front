@@ -46,7 +46,7 @@ export interface IEditProductForm {
   expirationDate: string
 }
 
-export interface IParamsGetProducts {
+export interface IParamsGet {
   size: number,
   page: number,
   filter?: string
@@ -60,4 +60,36 @@ export interface ICards {
   price?: string,
   image?: any,
   expirationDate?: string
+}
+
+export interface IUsers {
+  totalItems: number,
+  totalPages: number,
+  size: number,
+  page: number,
+  items: IUsersAPI[]
+}
+
+export interface IUsersAPI {
+  _id: string,
+  name: string,
+  email: string,
+  image: string
+}
+
+export interface IPostUser {
+  name: string,
+  email: string,
+  password: number,
+  image: FormData,
+}
+
+export interface IPutUser {
+  id: string,
+  body: IEditUserForm
+}
+
+export interface IEditUserForm {
+  name: string,
+  image: FormData
 }

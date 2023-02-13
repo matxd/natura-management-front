@@ -50,12 +50,12 @@ export const AccountSettings = () => {
         <Typography variant="body1" sx={{ fontWeight: '700', textTransform: 'capitalize', display: { xs: 'none', md: 'flex' } }}>Olá, {name}</Typography>
         <Tooltip title="Configurações da conta">
           <IconButton onClick={handleClick} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ width: '40px', height: '40px' }}>
-            <Avatar sx={{ bgcolor: 'gray' }} alt="User Avatar" src="">M</Avatar>
+            <Avatar sx={{ bgcolor: 'gray' }} alt="User Avatar" src="" />
           </IconButton>
         </Tooltip>
       </Stack>
       <Menu anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose} onClick={handleClose} PaperProps={{ elevation: 0, sx: { overflow: 'visible', filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))', mt: 1.5, '& .MuiAvatar-root': { width: 32, height: 32, ml: -0.5, mr: 1 } } }}>
-        <MenuItem  onClick={handleClose}>
+        <MenuItem onClick={() => { handleClose(); }}>
           <ListItemIcon>
             <Edit fontSize="small" />
           </ListItemIcon>

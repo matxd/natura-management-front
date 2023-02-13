@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IAddProduct, IParamsGetProducts, IProducts, IPutProduct } from "../../utils/interface";
+import { IAddProduct, IParamsGet, IProducts, IPutProduct } from "../../utils/interface";
 
 const productAPI = createApi({
   reducerPath: 'productAPI',
@@ -14,8 +14,8 @@ const productAPI = createApi({
   }),
   tagTypes: ['products'],
   endpoints: (builder) => ({
-    getProducts: builder.query<IProducts, IParamsGetProducts>({
-      query: (params: IParamsGetProducts) => 
+    getProducts: builder.query<IProducts, IParamsGet>({
+      query: (params: IParamsGet) => 
         `/produtos/listar?size=${params.size}&page=${params.page}${params.filter ? `&name=${params.filter}` : ''}`,
         providesTags: ['products']
     }),

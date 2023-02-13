@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Stack, Box } from "@mui/material";
 
@@ -41,7 +41,7 @@ export const Header = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, paddingBottom: '10px', height: '10vh', paddingTop: 1 }}>
         <Stack spacing={{ xs: 0, md: 2 }} direction='row' alignItems='center'>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <img src={logo} alt="Logo Natura Management" width='150px' />
+            <img src={logo} alt="Logo Natura Management" width='150px' style={{ cursor: 'pointer' }} onClick={() => navigate('/inicial')} />
           </Box>
           {pathname === '/inicial' && (<Components.SearchProduct />)} 
         </Stack>

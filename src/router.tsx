@@ -19,6 +19,7 @@ function AppRoutes() {
             <Route path='/inicial' element={<Page.Home />} />
             <Route path='/cadastrar-produto' element={<Page.AddProduct />} />
             <Route path='/editar-produto' element={<Page.EditProduct />} />
+            <Route path='/editar-perfil' element={<Page.EditProfile />} />
           </Route>
         </Routes>
       </BrowserRouter>
