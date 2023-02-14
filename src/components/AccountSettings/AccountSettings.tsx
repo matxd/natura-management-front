@@ -29,12 +29,12 @@ export const AccountSettings = () => {
   return (
     <>
       <Stack spacing={2} direction='row' alignItems='center'>
-        {!isLoading &&
+        {!isLoading && data &&
           <Typography variant="body1" sx={{ fontWeight: '700', textTransform: 'capitalize', display: { xs: 'none', md: 'flex' } }}>Olá, {data.name}</Typography>
         }
         <Tooltip title="Configurações da conta">
           <IconButton onClick={handleClick} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} sx={{ width: '40px', height: '40px' }}>
-            <Avatar sx={{ bgcolor: 'gray' }} alt="User Avatar" src={!isLoading ? data.image : ''} />
+            <Avatar sx={{ bgcolor: 'gray' }} alt="User Avatar" src={!isLoading && data ? data.image : ''} />
           </IconButton>
         </Tooltip>
       </Stack>

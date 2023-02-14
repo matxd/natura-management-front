@@ -62,6 +62,7 @@ export interface ICards {
   expirationDate?: string
 }
 
+// Interface Users
 export interface IUsers {
   totalItems: number,
   totalPages: number,
@@ -92,4 +93,11 @@ export interface IPutUser {
 export interface IEditUserForm {
   name: string,
   image: FormData
+}
+
+export interface ILoggedUser {
+  name: string,
+  email: string,
+  image: string,
+  id: string
 }

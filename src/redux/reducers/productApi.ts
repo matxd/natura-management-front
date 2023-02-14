@@ -5,7 +5,7 @@ import { IAddProduct, IParamsGet, IProducts, IPutProduct } from "../../utils/int
 const productAPI = createApi({
   reducerPath: 'productAPI',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.REACT_APP_URL_API,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) { headers.set('authorization', token); }

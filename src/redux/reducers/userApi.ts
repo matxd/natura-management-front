@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { IParamsGet, IPostUser, IPutUser, IUsers } from "../../utils/interface";
+import { ILoggedUser, IParamsGet, IPostUser, IPutUser, IUsers } from "../../utils/interface";
 
 const userAPI = createApi({
   reducerPath: 'userAPI',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.REACT_APP_URL_API,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) { headers.set('authorization', token); }
@@ -19,7 +19,7 @@ const userAPI = createApi({
         `/usuario/listar?size=${params.size}&page=${params.page}${params.filter ? `&name=${params.filter}` : ''}`,
         providesTags: ['users']
     }),
-    getLoggedUser: builder.query<any, any>({
+    getLoggedUser: builder.query<ILoggedUser, string>({
       query: () =>
         `/usuario/logado`,
         providesTags: ['users']

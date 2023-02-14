@@ -53,7 +53,7 @@ export const AddProduct = () => {
   };
 
   if(data) toast.success(data.message, toastConfig);
-  if(isSuccess) navigate(-1);
+  if(isSuccess) navigate('/inicial');
   if(isError) sendError(error);
 
   return (
@@ -103,7 +103,7 @@ export const AddProduct = () => {
                 </FormControl>
 
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: { xs: 3, md: 0 } }}>
-                  <Button variant="contained" disabled={isLoading ? true : false} sx={{ width: "150px", height: "40px", background: "gray", borderRadius: "10px", fontWeight: "bold", "&:hover": { background: "#c4c7cc" } }} onClick={() => navigate(-1)}>
+                  <Button variant="contained" disabled={isLoading ? true : false} sx={{ width: "150px", height: "40px", background: "gray", borderRadius: "10px", fontWeight: "bold", "&:hover": { background: "#c4c7cc" } }} onClick={() => navigate('/inicial')}>
                     Cancelar
                   </Button>
 
