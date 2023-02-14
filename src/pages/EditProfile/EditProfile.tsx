@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useForm } from 'react-hook-form';
 
-import { Box, Button, Container, FormControl, TextField, Typography, CircularProgress } from "@mui/material";
+import { Box, Button, Container, FormControl, TextField, Typography, CircularProgress, Avatar } from "@mui/material";
 
 import * as Components from '../../components/index';
 
@@ -31,20 +31,6 @@ export const EditProfile = () => {
     inputImageRef.current?.click();
   };
 
-  const decodificarJWT = async () => {
-    try {
-      let token = localStorage.getItem("token");
-      if (token) {
-        let decodedJWT = JSON.parse(atob(token.split('.')[1]));
-        let id = decodedJWT.id;
-  
-        setIdUserLogged(id);
-      }
-    } catch (error) {
-      setIdUserLogged('');
-    }
-  }
-
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {
       setImage(e.target.files[0]);
@@ -66,6 +52,20 @@ export const EditProfile = () => {
   if(isSuccess) navigate('/inicial');
   if(isError) sendError(error);
 
+  const decodificarJWT = async () => {
+    try {
+      let token = localStorage.getItem("token");
+      if (token) {
+        let decodedJWT = JSON.parse(atob(token.split('.')[1]));
+        let id = decodedJWT.id;
+  
+        setIdUserLogged(id);
+      }
+    } catch (error) {
+      setIdUserLogged('');
+    }
+  }
+
   useEffect(() => {
     decodificarJWT();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,6 +85,11 @@ export const EditProfile = () => {
             <Box component='form' onSubmit={handleSubmit(HandleEdit)} sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'center' }}>
 
               <Box sx={{ backgroundColor: '#fff', padding: 5, width: { xs: '100%', md: '50%' }, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: '5px', marginBottom: { xs: 5, md: 0 } }}>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Avatar alt='User Pic' src={image ? URL.createObjectURL(image) : ''} sx={{ width: '100px', height: '100px' }} />
+                </Box>
+
                 <FormControl fullWidth>
                   <Button onClick={handleClickFile} variant='contained' sx={{ height: '56px' }}>
                     <input type="file" accept='image/jpeg, image/png' style={{ display: 'none' }} ref={inputImageRef} onChange={imageChange} />
@@ -97,7 +102,7 @@ export const EditProfile = () => {
                 </FormControl>
 
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: { xs: 3, md: 0 } }}>
-                  <Button variant="contained" disabled={isLoading ? true : false} sx={{ width: "150px", height: "40px", background: "gray", borderRadius: "10px", fontWeight: "bold", "&:hover": { background: "#c4c7cc" } }} onClick={() => navigate(-1)}>
+                  <Button variant="contained" disabled={isLoading ? true : false} sx={{ width: "150px", height: "40px", background: "gray", borderRadius: "10px", fontWeight: "bold", "&:hover": { background: "#c4c7cc" } }} onClick={() => navigate('/inicial')}>
                     Cancelar
                   </Button>
 

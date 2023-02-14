@@ -19,6 +19,11 @@ const userAPI = createApi({
         `/usuario/listar?size=${params.size}&page=${params.page}${params.filter ? `&name=${params.filter}` : ''}`,
         providesTags: ['users']
     }),
+    getLoggedUser: builder.query<any, any>({
+      query: () =>
+        `/usuario/logado`,
+        providesTags: ['users']
+    }),
     postUser: builder.mutation<{ message: string }, FormData | IPostUser>({
       query: (user: IPostUser) => ({
         url: `/usuario/cadastrar`,

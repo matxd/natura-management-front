@@ -11,6 +11,7 @@ import logo from '../../assets/logo.svg';
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
 
+
 export const Header = () => {
   const { pathname } = useLocation();
   
@@ -34,7 +35,7 @@ export const Header = () => {
       clearInterval(expired);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <>

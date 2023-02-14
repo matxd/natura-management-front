@@ -4,13 +4,11 @@ import authAPI from './reducers/authApi';
 import productAPI from './reducers/productApi';
 import userAPI from './reducers/userApi';
 
-import authSlice from './reducers/authSlice';
 import productSlice from './reducers/productSlice';
 
 export const store = configureStore({
   reducer: {
     product: productSlice.reducer,
-    auth: authSlice.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [productAPI.reducerPath]: productAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer
@@ -19,4 +17,4 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
