@@ -34,7 +34,7 @@ export const Home: React.FC = () => {
 
           {isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', widht: '100%', height: '90vh' }}><CircularProgress color="inherit" /></Box>)}
 
-          {!data?.items.length && (<Box sx={{ display: 'flex', justifyContent: 'center', widht: '100%' }}><Typography variant='h4'>Nenhum produto encontrado, cadastre um produto.</Typography></Box>)}
+          {!data?.items.length && !isLoading && (<Box sx={{ display: 'flex', justifyContent: 'center', widht: '100%' }}><Typography variant='h4'>Nenhum produto encontrado, cadastre um produto.</Typography></Box>)}
 
           {!isLoading && (
             <>

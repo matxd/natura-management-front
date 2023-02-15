@@ -29,7 +29,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    const expired = setInterval(handleExpiredToken, 60000, token);
+    const expired = setInterval(handleExpiredToken, 1000, token);
     
     return () => {
       clearInterval(expired);
