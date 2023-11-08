@@ -25,7 +25,7 @@ export const Login: React.FC = () => {
   const emailForm = watch('email');
   const passwordForm = watch('password');
 
-  const formIsEmpty = useMemo(() => (emailForm.length > 0 && passwordForm.length > 0), [emailForm, passwordForm]);
+  const formIsEmpty = useMemo(() => emailForm && passwordForm ? false : true, [emailForm, passwordForm]);
 
   const HandleLogin = (data: ILogin) => {
     usePostAuth(data);
