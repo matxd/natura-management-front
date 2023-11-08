@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Box, TextField, Divider, Button, IconButton, CircularProgress, InputAdornment, Typography } from "@mui/material";
 import { AccountCircle, AccountCircleTwoTone, Visibility, VisibilityOff } from "@mui/icons-material";
@@ -18,9 +18,14 @@ export const Login: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [usePostAuth, { data, isLoading, isError, error, isSuccess }] = authAPI.usePostAuthorizationMutation();
-  const { register, handleSubmit } = useForm<ILogin>();
+  const { register, handleSubmit, watch, } = useForm<ILogin>();
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
+
+  const emailForm = watch('email');
+  const passwordForm = watch('password');
+
+  const formIsEmpty = useMemo(() => (emailForm.length > 0 && passwordForm.length > 0), [emailForm, passwordForm]);
 
   const HandleLogin = (data: ILogin) => {
     usePostAuth(data);
@@ -140,7 +145,7 @@ export const Login: React.FC = () => {
           <Button
             type="submit"
             variant="contained"
-            disabled={isLoading ? true : false}
+            disabled={isLoading || formIsEmpty ? true : false}
             sx={{
               width: "150px",
               height: "40px",
